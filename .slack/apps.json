@@ -5,6 +5,12 @@
       "app_id": "A059KJQ0RK8",
       "team_id": "T038J6TH5PF",
       "IsDev": false
+    },
+    "slack-pde": {
+      "name": "slack-pde",
+      "app_id": "A059S85B43U",
+      "team_id": "T5J4Q04QG",
+      "IsDev": false
     }
   },
   "default": "devrelsandbox"

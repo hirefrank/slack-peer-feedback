@@ -81,8 +81,7 @@ const instructions = SetupPeerFeedbackWorkflow.addStep(
             },
             workflow: {
               trigger: {
-                url:
-                  "https://slack.com/shortcuts/Ft059BLW6RE3/fca439e548095f5e23e56b610962a6a1",
+                url: Deno.env.get("workflow_request"),
                 customizable_input_parameters: [
                   {
                     name: "requestor",
