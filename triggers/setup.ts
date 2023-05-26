@@ -11,7 +11,7 @@ import SetupPeerFeedbackWorkflow from "../workflows/setup.ts";
 const trigger: Trigger<typeof SetupPeerFeedbackWorkflow.definition> = {
   type: "shortcut",
   name: "Peer Feedback",
-  description: "Quite possibly the easiest way to get peer feedback.",
+  description: "Quite possibly the easiest way to receive peer feedback.",
   workflow: "#/workflows/setup_peer_feedback",
   inputs: {
     requestor: {

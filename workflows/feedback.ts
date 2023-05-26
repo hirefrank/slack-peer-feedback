@@ -1,5 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
-
+import { SendFeedbackFunctionDefinition } from "../functions/send_feedback.ts";
 /**
  * A workflow is a set of steps that are executed in order.
  * Each step in a workflow is a function.
@@ -47,10 +47,9 @@ const inputForm = PeerFeedbackWorkflow.addStep(
     submit_label: "Submit",
     fields: {
       elements: [{
-        name: "continue",
+        name: "anon",
         title: "Do you want to submit your feedback anonymously?",
         type: Schema.types.boolean,
-        description: "We hope you don't.",
         default: false,
       }, {
         name: "continue",
@@ -80,11 +79,24 @@ const inputForm = PeerFeedbackWorkflow.addStep(
 * When were they particularly unhelpful?
         `,
       }],
-      required: ["continue", "start", "stop"],
+      required: ["anon", "continue", "start", "stop"],
     },
   },
 );
 
 // add message in channel
+PeerFeedbackWorkflow.addStep(
+  SendFeedbackFunctionDefinition,
+  {
+    channel_id: PeerFeedbackWorkflow.inputs.channel_id,
+    peer: PeerFeedbackWorkflow.inputs.peer,
+    feedback: {
+      anon: inputForm.outputs.fields.anon,
+      continue: inputForm.outputs.fields.continue,
+      start: inputForm.outputs.fields.start,
+      stop: inputForm.outputs.fields.stop,
+    },
+  },
+);
 
 export default PeerFeedbackWorkflow;

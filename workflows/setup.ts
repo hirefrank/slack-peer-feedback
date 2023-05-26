@@ -1,4 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
+import { SaveUserFunctionDefinition } from "../functions/save_user.ts";
 
 /**
  * A workflow is a set of steps that are executed in order.
@@ -34,7 +35,16 @@ const createChannelStep = SetupPeerFeedbackWorkflow.addStep(
   {
     channel_name: "peer-feedback",
     is_private: true,
-    // user_ids: [SetupPeerFeedbackWorkflow.inputs.requestor],
+    manager_ids: [SetupPeerFeedbackWorkflow.inputs.requestor],
+  },
+);
+
+// custom function, save user/channel to datastore
+SetupPeerFeedbackWorkflow.addStep(
+  SaveUserFunctionDefinition,
+  {
+    channel_id: createChannelStep.outputs.channel_id,
+    user: SetupPeerFeedbackWorkflow.inputs.requestor,
   },
 );
 
@@ -47,6 +57,8 @@ SetupPeerFeedbackWorkflow.addStep(
   },
 );
 
+console.log(Deno.env.get("workflow_request"));
+
 const instructions = SetupPeerFeedbackWorkflow.addStep(
   Schema.slack.functions.SendMessage,
   {
@@ -56,7 +68,6 @@ const instructions = SetupPeerFeedbackWorkflow.addStep(
 :writing_hand: When you receive peer feedback it will appear in this channel.
 :bulb: Feel free to rename this channel to something more memorable
 :thinking_face: Consider inviting your manager to this channel.
-
 `,
     interactive_blocks: [
       {
@@ -71,7 +82,7 @@ const instructions = SetupPeerFeedbackWorkflow.addStep(
             workflow: {
               trigger: {
                 url:
-                  "https://slack.com/shortcuts/Ft055YREHKNF/25c31cbc0fc648167f3edec36a9bddac",
+                  "https://slack.com/shortcuts/Ft059BLW6RE3/fca439e548095f5e23e56b610962a6a1",
                 customizable_input_parameters: [
                   {
                     name: "requestor",
