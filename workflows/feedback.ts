@@ -93,4 +93,14 @@ PeerFeedbackWorkflow.addStep(
   },
 );
 
+// send confirmation message to peer
+PeerFeedbackWorkflow.addStep(
+  Schema.slack.functions.SendDm,
+  {
+    user_id: PeerFeedbackWorkflow.inputs.peer,
+    message:
+      `Thanks for submitting peer feedback for <@${PeerFeedbackWorkflow.inputs.requestor}>.`,
+  },
+);
+
 export default PeerFeedbackWorkflow;
