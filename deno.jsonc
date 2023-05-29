@@ -1,6 +1,8 @@
 {
   "importMap": "import_map.json",
   "tasks": {
-    "test": "deno fmt --check && deno lint && deno test --allow-read --allow-none"
+    "test": "deno fmt --check && deno lint && deno test --allow-read --allow-none",
+    "run": "export $(cat .env | xargs) && slack run",
+    "deploy": "export $(cat .env.prod | xargs) && slack deploy"
   }
 }
