@@ -30,7 +30,7 @@ This automation allows users to request, collect, and consolidate peer feedback 
 
 - **Setup Workflow**: Creates a private channel for your peer feedback with instructions for next steps.
 - **Request Peers**: Allows you to choose peers for feedback. Peers must be in the same workspace. After submission, a feedback form is DM'd to each of the peers.
-- **Give Feedback**: A feedback form for the peers to submit feedback. The feedback is posted back to the requester's private channel. Feedback can be made annoymously.
+- **Give Feedback**: A feedback form for the peers to submit feedback. The feedback is posted back to the requester's private channel. Feedback can be made anonymously.
 
 ## Setup
 
