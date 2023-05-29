@@ -159,6 +159,7 @@ be present in your manifest.
 - Use AI to generate summaries of feedback received
 - Allow requestor to choose their own feedback questions
 - Add peer feedback request as saved to later item
+- Reminders for peers that haven't submitted feedback 
 
 ## Deploying Your App
 
