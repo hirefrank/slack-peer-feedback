@@ -152,9 +152,9 @@ be present in your manifest.
 
 ## Future Considerations
 
-- Write peer feeback to a Slack Canvas
+- Write peer feedback to a Slack Canvas
 - Allow a manager to request peer feedback on behalf of the employee
-- Provide a mechanism for unscolicited feedback for an employee
+- Provide a mechanism for unsolicited feedback for an employee
 - Write feedback back to a third-party system of record (e.g. Lattice)
 - Use AI to generate summaries of feedback received
 - Allow requestor to choose their own feedback questions
