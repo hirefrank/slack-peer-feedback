@@ -2,10 +2,8 @@ import { Trigger } from "deno-slack-sdk/types.ts";
 import RequestFeedbackWorkflow from "../workflows/request.ts";
 
 /**
- * Triggers determine when workflows are executed. A trigger
- * file describes a scenario in which a workflow should be run,
- * such as a user pressing a button or when a specific event occurs.
- * https://api.slack.com/future/triggers
+ * Trigger for the workflow to request peers. This workflow
+ * uses Workflow Buttons so it must be created manually when deployed.
  */
 
 const trigger: Trigger<typeof RequestFeedbackWorkflow.definition> = {

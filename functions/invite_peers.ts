@@ -3,6 +3,12 @@ import { SlackAPIClient } from "deno-slack-sdk/types.ts";
 import { TriggerContextData } from "deno-slack-api/mod.ts";
 import PeerFeedbackWorkflow from "../workflows/feedback.ts";
 
+/**
+ * Custom function for invting peers to give the requestor feedback
+ * Takes an array of peers, iterates through them, and sends them a DM
+ * with a link trigger to a feedback form
+ */
+
 export const InvitePeersFunctionDefinition = DefineFunction({
   callback_id: "invite_peers_function",
   title: "Invite peers function",
@@ -37,12 +43,15 @@ export default SlackFunction(
   async ({ inputs, client }) => {
     const peers: string[] = inputs.peers;
     const peersFormatted: string[] = [];
+
+    // generates runtime link trigger
     const trigger = await feedbackTrigger(
       client,
       inputs.requestor,
       inputs.channel_id,
     );
 
+    // iterates through peers to send dm
     peers.forEach(async function (peer) {
       peersFormatted.push(`<@${peer}>`);
       const msgResponse = await client.chat.postMessage({
@@ -60,6 +69,7 @@ export default SlackFunction(
       }
     });
 
+    // confirms peers invited in channel
     const channelMsgResponse = await client.chat.postMessage({
       channel: inputs.channel_id,
       mrkdwn: true,
@@ -78,6 +88,12 @@ export default SlackFunction(
     return { outputs: {} };
   },
 );
+
+/**
+ * Function for creating a runtime link trigger for each peer
+ * I used this instead of a workflow button because I didn't want
+ * to have to generate the block kit items in a custom function.
+ */
 
 export async function feedbackTrigger(
   client: SlackAPIClient,

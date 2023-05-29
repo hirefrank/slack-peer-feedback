@@ -2,13 +2,10 @@ import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { InvitePeersFunctionDefinition } from "../functions/invite_peers.ts";
 
 /**
- * A workflow is a set of steps that are executed in order.
- * Each step in a workflow is a function.
- * https://api.slack.com/future/workflows
- *
- * This workflow uses interactivity. Learn more at:
- * https://api.slack.com/future/forms#add-interactivity
+ * Workflow for requesting peers to give feedback.
+ * Peers are sent a DM and link to a form for submitting.
  */
+
 const RequestFeedbackWorkflow = DefineWorkflow({
   callback_id: "request_peer_feedback",
   title: "Invite peers for feedback.",
@@ -29,12 +26,7 @@ const RequestFeedbackWorkflow = DefineWorkflow({
   },
 });
 
-/**
- * For collecting input from users, we recommend the
- * built-in OpenForm function as a first step.
- * https://api.slack.com/future/functions#open-a-form
- */
-
+// opens form to submit peers
 const inputForm = RequestFeedbackWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
@@ -56,9 +48,7 @@ const inputForm = RequestFeedbackWorkflow.addStep(
   },
 );
 
-// custom function
-// send dm with instructions/form link to those invited
-// send message to channel as confirmation they were invited
+// custom function to dm peers and setup runtime link trigger
 RequestFeedbackWorkflow.addStep(
   InvitePeersFunctionDefinition,
   {

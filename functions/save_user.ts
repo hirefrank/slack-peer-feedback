@@ -1,5 +1,9 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 
+/**
+ * Custom function for saving the user to a datastore.
+ */
+
 export const SaveUserFunctionDefinition = DefineFunction({
   callback_id: "save_user_function",
   title: "Save user and channel to datastore function",

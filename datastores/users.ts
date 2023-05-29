@@ -1,9 +1,9 @@
 import { DefineDatastore, Schema } from "deno-slack-sdk/mod.ts";
 
 /**
- * Datastores are a Slack-hosted location to store
- * and retrieve data for your app.
- * https://api.slack.com/future/datastores
+ * Simple datastore to collect the requestor and the channel
+ * In the future I can send messages to each of these channels
+ * if I have updates to the workflows.
  */
 const UsersDatastore = DefineDatastore({
   name: "users",

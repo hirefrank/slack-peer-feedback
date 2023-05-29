@@ -12,7 +12,7 @@ import UsersDatastore from "./datastores/users.ts";
 export default Manifest({
   name: "Peer Feedback",
   description: "Quite possibly the easiest way to get peer feedback.",
-  icon: "assets/feedback.png",
+  icon: "assets/feedback-white.png",
   functions: [],
   workflows: [
     SetupPeerFeedbackWorkflow,

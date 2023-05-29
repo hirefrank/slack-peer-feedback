@@ -1,5 +1,10 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 
+/**
+ * Custom function for posting the peer feedback in the
+ * requestor's private channel.
+ */
+
 export const SendFeedbackFunctionDefinition = DefineFunction({
   callback_id: "send_feedback_function",
   title: "Send peer feedback function",
@@ -29,24 +34,20 @@ export default SlackFunction(
   SendFeedbackFunctionDefinition,
   async ({ inputs, client }) => {
     const byline = (!inputs.feedback.anon) ? `<@${inputs.peer}>` : "Anonymous";
-    const message = `:wave: You've received feedback from ${byline}.
+    const feedback = `*What should you continue doing?*
+  ${inputs.feedback.continue}
 
-*What should they continue doing?*
-${inputs.feedback.continue}
+  *What should you start doing?*
+  ${inputs.feedback.start}
 
-*What should they start doing?*
-${inputs.feedback.start}
+  *What should you stop doing?*
+  ${inputs.feedback.stop}`;
 
-*What should they stop doing?*
-${inputs.feedback.stop}
-
-:v:
-`;
-
+    // posts message announcing feedback has been submitted
     const msgResponse = await client.chat.postMessage({
       channel: inputs.channel_id,
       mrkdwn: true,
-      text: message,
+      text: `:wave: You've received feedback from ${byline}.`,
     });
 
     if (!msgResponse.ok) {
@@ -54,6 +55,21 @@ ${inputs.feedback.stop}
         "Error during request chat.postMessage!",
         msgResponse.error,
       );
+    } else {
+      // threads feedback under parent message
+      const feedbackResponse = await client.chat.postMessage({
+        channel: inputs.channel_id,
+        thread_ts: msgResponse.ts,
+        mrkdwn: true,
+        text: feedback,
+      });
+
+      if (!feedbackResponse.ok) {
+        console.log(
+          "Error during request chat.postMessage!",
+          msgResponse.error,
+        );
+      }
     }
 
     return { outputs: {} };

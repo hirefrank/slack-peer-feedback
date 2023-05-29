@@ -2,13 +2,10 @@ import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { SaveUserFunctionDefinition } from "../functions/save_user.ts";
 
 /**
- * A workflow is a set of steps that are executed in order.
- * Each step in a workflow is a function.
- * https://api.slack.com/future/workflows
- *
- * This workflow uses interactivity. Learn more at:
- * https://api.slack.com/future/forms#add-interactivity
+ * Initial workflow for setting up peer feedback.
+ * Creates requestor's private channel with next steps.
  */
+
 const SetupPeerFeedbackWorkflow = DefineWorkflow({
   callback_id: "setup_peer_feedback",
   title: "Request feedback from your peers.",
@@ -22,12 +19,6 @@ const SetupPeerFeedbackWorkflow = DefineWorkflow({
     required: ["requestor"],
   },
 });
-
-/**
- * For collecting input from users, we recommend the
- * built-in OpenForm function as a first step.
- * https://api.slack.com/future/functions#open-a-form
- */
 
 // setup private channel
 const createChannelStep = SetupPeerFeedbackWorkflow.addStep(
@@ -57,8 +48,7 @@ SetupPeerFeedbackWorkflow.addStep(
   },
 );
 
-console.log(Deno.env.get("workflow_request"));
-
+// send instructions to the channel
 const instructions = SetupPeerFeedbackWorkflow.addStep(
   Schema.slack.functions.SendMessage,
   {
