@@ -152,7 +152,7 @@ be present in your manifest.
 
 ## Future Considerations
 
-- Write peer feedback to a Slack Canvas
+- Write peer feedback to a Slack canvas
 - Allow a manager to request peer feedback on behalf of the employee
 - Provide a mechanism for unsolicited feedback for an employee
 - Write feedback back to a third-party system of record (e.g. Lattice)
