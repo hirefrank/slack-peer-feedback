@@ -133,7 +133,7 @@ created (`setup.ts`) -- you might want to send it to yourself your Slack workspa
 
 ### Request Peers
 
-This workflow is intiatied from a button sent your to your private channel in a step in the
+This workflow is initiated from a button sent your to your private channel in a step in the
 earlier workflow. This workflow allows you to pick multiple peers to give you feedback. Upon submission, each peer is sent a DM with a link to submit their feedback.
 
 ### Give Feedback
