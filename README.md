@@ -158,6 +158,7 @@ be present in your manifest.
 - Write feedback back to a third-party system of record (e.g. Lattice)
 - Use AI to generate summaries of feedback received
 - Allow requestor to choose their own feedback questions
+- Add peer feedback request as saved to later item
 
 ## Deploying Your App
 

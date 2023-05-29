@@ -34,14 +34,15 @@ export default SlackFunction(
   SendFeedbackFunctionDefinition,
   async ({ inputs, client }) => {
     const byline = (!inputs.feedback.anon) ? `<@${inputs.peer}>` : "Anonymous";
-    const feedback = `*What should you continue doing?*
-  ${inputs.feedback.continue}
+    const feedback = `
+*What should you continue doing?*
+${inputs.feedback.continue}
 
-  *What should you start doing?*
-  ${inputs.feedback.start}
+*What should you start doing?*
+${inputs.feedback.start}
 
-  *What should you stop doing?*
-  ${inputs.feedback.stop}`;
+*What should you stop doing?*
+${inputs.feedback.stop}`;
 
     // posts message announcing feedback has been submitted
     const msgResponse = await client.chat.postMessage({
