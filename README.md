@@ -30,7 +30,7 @@ This automation allows users to request, collect, and consolidate peer feedback 
 
 - **Setup Workflow**: Creates a private channel for your peer feedback with instructions for next steps.
 - **Request Peers**: Allows you to choose peers for feedback. Peers must be in the same workspace. After submission, a feedback form is DM'd to each of the peers.
-- **Give Feedback**: A feedback form for the peers to submit feedback. The feedback is posted back to the requester's private channel. Feedback can be made annoymously.
+- **Give Feedback**: A feedback form for the peers to submit feedback. The feedback is posted back to the requester's private channel. Feedback can be made anonymously.
 
 ## Setup
 
@@ -133,7 +133,7 @@ created (`setup.ts`) -- you might want to send it to yourself your Slack workspa
 
 ### Request Peers
 
-This workflow is intiatied from a button sent your to your private channel in a step in the
+This workflow is initiated from a button sent your to your private channel in a step in the
 earlier workflow. This workflow allows you to pick multiple peers to give you feedback. Upon submission, each peer is sent a DM with a link to submit their feedback.
 
 ### Give Feedback
@@ -152,13 +152,14 @@ be present in your manifest.
 
 ## Future Considerations
 
-- Write peer feeback to a Slack Canvas
+- Write peer feedback to a Slack canvas
 - Allow a manager to request peer feedback on behalf of the employee
-- Provide a mechanism for unscolicited feedback for an employee
+- Provide a mechanism for unsolicited feedback for an employee
 - Write feedback back to a third-party system of record (e.g. Lattice)
 - Use AI to generate summaries of feedback received
 - Allow requestor to choose their own feedback questions
 - Add peer feedback request as saved to later item
+- Reminders for peers that haven't submitted feedback 
 
 ## Deploying Your App
 
