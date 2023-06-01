@@ -2,6 +2,7 @@ import { Manifest } from "deno-slack-sdk/mod.ts";
 import SetupPeerFeedbackWorkflow from "./workflows/setup.ts";
 import PeerFeedbackWorkflow from "./workflows/feedback.ts";
 import RequestFeedbackWorkflow from "./workflows/request.ts";
+import StatsWorkflow from "./workflows/stats.ts";
 import UsersDatastore from "./datastores/users.ts";
 
 /**
@@ -18,6 +19,7 @@ export default Manifest({
     SetupPeerFeedbackWorkflow,
     PeerFeedbackWorkflow,
     RequestFeedbackWorkflow,
+    StatsWorkflow,
   ],
   datastores: [UsersDatastore],
   outgoingDomains: [],
@@ -28,7 +30,6 @@ export default Manifest({
     "channels:manage",
     "groups:write",
     "triggers:write",
-    "metadata.message:read",
     "pins:write",
     "datastore:read",
     "datastore:write",

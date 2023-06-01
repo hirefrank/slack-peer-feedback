@@ -68,7 +68,7 @@ ${inputs.feedback.stop}`;
       if (!feedbackResponse.ok) {
         console.log(
           "Error during request chat.postMessage!",
-          msgResponse.error,
+          feedbackResponse.error,
         );
       }
     }
