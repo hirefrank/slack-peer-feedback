@@ -1,5 +1,6 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { SaveUserFunctionDefinition } from "../functions/save_user.ts";
+import { RequestPeersFunctionDefinition } from "../functions/request_peers.ts";
 
 /**
  * Initial workflow for setting up peer feedback.
@@ -48,6 +49,14 @@ SetupPeerFeedbackWorkflow.addStep(
   },
 );
 
+// create trigger for requesting peer feedback
+const requestFeedbackShortcut = SetupPeerFeedbackWorkflow.addStep(
+  RequestPeersFunctionDefinition,
+  {
+    requestor: SetupPeerFeedbackWorkflow.inputs.requestor,
+    channel_id: createChannelStep.outputs.channel_id,
+  },
+);
 // send instructions to the channel
 const instructions = SetupPeerFeedbackWorkflow.addStep(
   Schema.slack.functions.SendMessage,
@@ -71,17 +80,7 @@ const instructions = SetupPeerFeedbackWorkflow.addStep(
             },
             workflow: {
               trigger: {
-                url: Deno.env.get("workflow_request"),
-                customizable_input_parameters: [
-                  {
-                    name: "requestor",
-                    value: SetupPeerFeedbackWorkflow.inputs.requestor,
-                  },
-                  {
-                    name: "channel_id",
-                    value: createChannelStep.outputs.channel_id,
-                  },
-                ],
+                url: requestFeedbackShortcut.outputs.feedbackShortcut,
               },
             },
           },
