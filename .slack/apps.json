@@ -1,17 +1,10 @@
 {
   "apps": {
-    "devrelsandbox": {
-      "name": "devrelsandbox",
+    "T038J6TH5PF": {
       "app_id": "A059KJQ0RK8",
-      "team_id": "T038J6TH5PF",
-      "IsDev": false
-    },
-    "slack-pde": {
-      "name": "slack-pde",
-      "app_id": "A059S85B43U",
-      "enterprise_id": "E12KS1G65",
-      "team_id": "T5J4Q04QG",
-      "IsDev": false
+      "IsDev": false,
+      "team_domain": "devrelsandbox",
+      "team_id": "T038J6TH5PF"
     }
   },
   "default": "devrelsandbox"

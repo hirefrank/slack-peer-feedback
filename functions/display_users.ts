@@ -37,8 +37,6 @@ export default SlackFunction(
       if (userArray.indexOf(user) === -1) userArray.push(user);
     });
 
-    console.log(inputs.channel_id);
-
     // threads feedback under parent message
     const msgResponse = await client.chat.postMessage({
       channel: inputs.user_id,
